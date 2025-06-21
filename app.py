@@ -50,6 +50,9 @@ mapeamento_obesidade = {
 
 df['Obesity_Label'] = df['Obesity'].map(mapeamento_obesidade)
 
+# Criação das abas principais
+aba1, aba2 = st.tabs(['🔍 Sistema Preditivo', '📊 Painel Analítico'])
+
 # ============================
 # 📊 Aba 2 — Painel Analítico
 # ============================

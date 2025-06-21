@@ -160,29 +160,46 @@ with aba2:
 
     if subaba == '🎯 Distribuição Geral':
         st.subheader('Distribuição dos Níveis de Obesidade, Peso, Altura e Idade')
-        col1, col2 = st.columns(2)
 
-        with col1:
-            fig, ax = plt.subplots(figsize=(5, 3))
-            contagem = df['Obesity_Label'].value_counts().reindex([mapeamento_obesidade[k] for k in ordem_obesidade])
+        # 🔺 Gráfico — Níveis de Obesidade (Centralizado)
+        col_esq, col_centro, col_dir = st.columns([1, 2, 1])
+
+        with col_centro:
+            fig, ax = plt.subplots(figsize=(6, 4))
+            contagem = df['Obesity_Label'].value_counts().reindex(
+                [mapeamento_obesidade[k] for k in ordem_obesidade]
+            )
             sns.barplot(x=contagem.values, y=contagem.index, color='red', ax=ax)
-            ax.set_title('Níveis de Obesidade')
+            ax.set_title('Distribuição dos Níveis de Obesidade')
+            ax.set_xlabel('Quantidade')
+            ax.set_ylabel('Nível de Obesidade')
             st.pyplot(fig)
 
-            fig, ax = plt.subplots(figsize=(5, 3))
-            sns.histplot(df['Weight'], kde=True, bins=20, ax=ax, color='blue')
-            ax.set_title('Distribuição de Peso')
+        # 🔻 Três gráficos lado a lado
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.histplot(df['Height'], kde=True, bins=20, color='orange', ax=ax)
+            ax.set_title('Distribuição de Altura')
+            ax.set_xlabel('Altura (m)')
+            ax.set_ylabel('Frequência')
             st.pyplot(fig)
 
         with col2:
-            fig, ax = plt.subplots(figsize=(5, 3))
-            sns.histplot(df['Height'], kde=True, bins=20, ax=ax, color='orange')
-            ax.set_title('Distribuição de Altura')
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.histplot(df['Weight'], kde=True, bins=20, color='blue', ax=ax)
+            ax.set_title('Distribuição de Peso')
+            ax.set_xlabel('Peso (kg)')
+            ax.set_ylabel('Frequência')
             st.pyplot(fig)
 
-            fig, ax = plt.subplots(figsize=(5, 3))
-            sns.histplot(df['Age'], kde=True, bins=20, ax=ax, color='green')
+        with col3:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.histplot(df['Age'], kde=True, bins=20, color='green', ax=ax)
             ax.set_title('Distribuição de Idade')
+            ax.set_xlabel('Idade (anos)')
+            ax.set_ylabel('Frequência')
             st.pyplot(fig)
 
     elif subaba == '🔍 Perfil Demográfico':

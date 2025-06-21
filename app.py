@@ -329,12 +329,24 @@ with aba2:
     if subaba == '🔧 Comportamento e Hábitos':
         st.subheader('Comportamento e Hábitos Alimentares')
 
-        col1, col2 = st.columns(2)
+        # 🔧 Correção dos rótulos
+        df_plot = df_graficos.copy()
+        df_plot['alimentacao_entre_refeicoes'] = df_plot['alimentacao_entre_refeicoes'].replace({
+            'no': 'Não', 'Sometimes': 'Às vezes', 'Frequently': 'Frequente', 'Always': 'Sempre'
+        })
+        df_plot['monitora_calorias'] = df_plot['monitora_calorias'].replace({
+            'yes': 'Sim', 'no': 'Não'
+        })
+        df_plot['consome_alta_calorias_frequente'] = df_plot['consome_alta_calorias_frequente'].replace({
+            'yes': 'Sim', 'no': 'Não'
+        })
+
+        col1, col2, col3 = st.columns(3)
 
         with col1:
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(4, 3))
             sns.countplot(
-                data=df_graficos,
+                data=df_plot,
                 x='alimentacao_entre_refeicoes',
                 hue='Obesity_Label',
                 palette='Reds',
@@ -350,9 +362,9 @@ with aba2:
             st.pyplot(fig)
 
         with col2:
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(4, 3))
             sns.countplot(
-                data=df_graficos,
+                data=df_plot,
                 x='monitora_calorias',
                 hue='Obesity_Label',
                 palette='Reds',
@@ -367,24 +379,23 @@ with aba2:
             ax.get_legend().remove()
             st.pyplot(fig)
 
-        st.subheader('Consumo de Alimentos Altamente Calóricos')
-
-        fig, ax = plt.subplots(figsize=(6, 4))
-        sns.countplot(
-            data=df_graficos,
-            x='consome_alta_calorias_frequente',
-            hue='Obesity_Label',
-            palette='Reds',
-            hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
-            ax=ax
-        )
-        ax.set_title('Consome Alimentos Altamente Calóricos?', fontsize=12, fontweight='bold')
-        ax.set_xlabel('Consome?', fontsize=9)
-        ax.set_ylabel('Quantidade', fontsize=9)
-        ax.tick_params(axis='both', labelsize=8)
-        plt.xticks(rotation=45)
-        ax.get_legend().remove()
-        st.pyplot(fig)
+        with col3:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.countplot(
+                data=df_plot,
+                x='consome_alta_calorias_frequente',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Consumo de Alimentos Calóricos', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Consome?', fontsize=9)
+            ax.set_ylabel('Quantidade', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            ax.get_legend().remove()
+            st.pyplot(fig)
 
         # 🔸 Legenda única
         cores = sns.color_palette("Reds", n_colors=7)
@@ -405,7 +416,7 @@ with aba2:
             frameon=False
         )
         st.pyplot(fig)
-
+        
         # 🚬 Consumo e Transporte
     if subaba == '🚬 Consumo e Transporte':
         st.subheader('Consumo de Cigarro, Álcool e Transporte')

@@ -427,6 +427,13 @@ with aba2:
         df_plot['freq_consumo_alcool'] = df_plot['freq_consumo_alcool'].replace({
             'no': 'Não', 'Sometimes': 'Às vezes', 'Frequently': 'Frequente', 'Always': 'Sempre'
         })
+        df_plot['meio_transporte_contumaz'] = df_plot['meio_transporte_contumaz'].replace({
+            'Walking': 'Caminhada',
+            'Bike': 'Bicicleta',
+            'Public_Transportation': 'Transporte Público',
+            'Automobile': 'Automóvel',
+            'Motorbike': 'Moto'
+        })
 
         col1, col2, col3 = st.columns(3)
 
@@ -503,6 +510,3 @@ with aba2:
             frameon=False
         )
         st.pyplot(fig)
-
-
-

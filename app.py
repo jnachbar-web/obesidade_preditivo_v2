@@ -354,7 +354,6 @@ with aba2:
                 ax=ax
             )
             ax.set_title('Consumo Entre Refeições', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Frequência', fontsize=9)
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
             plt.xticks(rotation=45)
@@ -372,7 +371,6 @@ with aba2:
                 ax=ax
             )
             ax.set_title('Monitoramento de Calorias', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Monitora?', fontsize=9)
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
             plt.xticks(rotation=45)
@@ -390,7 +388,6 @@ with aba2:
                 ax=ax
             )
             ax.set_title('Consumo de Alimentos Calóricos', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Consome?', fontsize=9)
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
             plt.xticks(rotation=45)
@@ -416,7 +413,7 @@ with aba2:
             frameon=False
         )
         st.pyplot(fig)
-        
+
         # 🚬 Consumo e Transporte
     if subaba == '🚬 Consumo e Transporte':
         st.subheader('Consumo de Cigarro, Álcool e Transporte')

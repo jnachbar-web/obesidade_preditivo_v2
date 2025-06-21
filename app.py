@@ -8,6 +8,7 @@ import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+from matplotlib.patches import Patch
 
 # ============================
 # 🎨 Configuração da Página
@@ -245,15 +246,21 @@ with aba2:
             st.pyplot(fig)
 
         # 🔸 Legenda única
-        legenda = plt.figure(figsize=(6, 1))
-        plt.legend(
-            labels=[mapeamento_obesidade[k] for k in ordem_obesidade],
+        cores = sns.color_palette("Reds", n_colors=7)
+        legenda_patches = [
+            Patch(color=cores[i], label=mapeamento_obesidade[k])
+            for i, k in enumerate(ordem_obesidade)
+        ]
+
+        fig, ax = plt.subplots(figsize=(6, 1))
+        ax.axis('off')
+        ax.legend(
+            handles=legenda_patches,
             title='Nível de Obesidade',
-            fontsize=8,
-            title_fontsize=9,
             loc='center',
             ncol=4,
+            fontsize=8,
+            title_fontsize=9,
             frameon=False
         )
-        plt.axis('off')
-        st.pyplot(legenda)
+        st.pyplot(fig)

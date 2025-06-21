@@ -135,7 +135,7 @@ with aba2:
         with col2:
             fig, ax = plt.subplots(figsize=(5, 3))
             sns.countplot(
-                data=df, x='family_history_with_overweight', hue='Obesity_Label',
+                data=df, x='historico_familiar', hue='Obesity_Label',
                 palette='Reds', hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade], ax=ax
             )
             ax.set_title('Obesidade x Histórico Familiar', fontsize=12, fontweight='bold')

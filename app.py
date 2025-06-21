@@ -100,6 +100,9 @@ if submit:
     # ✅ Garantir a ordem e as colunas corretas
     dados = dados[features]
 
+    st.write('Features esperadas:', features)
+    st.write('Features recebidas:', list(dados.columns))
+
     # ✅ Fazer a predição
     pred = modelo.predict(dados)[0]
     resultado = rotulos_obesidade_invertido[pred]

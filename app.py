@@ -32,6 +32,26 @@ except FileNotFoundError:
     st.error('🚫 Arquivo Obesity.csv não encontrado.')
     st.stop()
 
+df.rename(columns={
+    'Gender':'genero',
+    'Age':'idade',
+    'Height':'altura',
+    'Weight':'peso',
+    'family_history_with_overweight':'historico_familiar',
+    'FAVC':'consome_alta_calorias_frequente',
+    'FCVC':'consumo_vegetais',
+    'NCP':'qtde_refeicoes_principais',
+    'CAEC':'alimentacao_entre_refeicoes',
+    'SMOKE':'fuma',
+    'CH2O':'qtde_agua_diaria',
+    'SCC':'monitora_calorias',
+    'FAF':'freq_atividade_fisica',
+    'TUE':'tempo_uso_dispositivos',
+    'CALC':'freq_consumo_alcool',
+    'MTRANS':'meio_transporte_contumaz',
+    'Obesity':'nivel_obesidade'
+}, inplace=True)
+
 # Mapeamento de rótulos
 ordem_obesidade = [
     'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I',

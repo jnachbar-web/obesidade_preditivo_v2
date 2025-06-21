@@ -1,5 +1,5 @@
 # ============================
-# 🚀 Sistema Preditivo de Obesidade com Painel Analítico
+# 🚀 Sistema Preditivo + Painel Analítico (Otimizado)
 # ============================
 
 import streamlit as st
@@ -17,21 +17,20 @@ st.set_page_config(page_title='Preditor de Obesidade', layout='wide')
 
 
 # ============================
-# 📂 Carregar Artefatos com Verificação
+# 📂 Carregar Artefatos
 # ============================
 def carregar_artefato(nome_arquivo, descricao):
     try:
         if os.path.exists(nome_arquivo):
             return joblib.load(nome_arquivo)
         else:
-            st.error(f'🚫 Arquivo {nome_arquivo} ({descricao}) não encontrado no repositório.')
+            st.error(f'🚫 Arquivo {nome_arquivo} ({descricao}) não encontrado.')
             st.stop()
     except Exception as e:
         st.error(f'❌ Erro ao carregar {descricao}: {e}')
         st.stop()
 
 
-# 🔥 Carregar Modelo, LabelEncoder, Features e Dataset
 modelo = carregar_artefato('modelo_obesidade.joblib', 'Modelo')
 label_encoder = carregar_artefato('labelencoder_obesidade.joblib', 'Label Encoder')
 features = carregar_artefato('features.joblib', 'Lista de Features')
@@ -39,12 +38,12 @@ features = carregar_artefato('features.joblib', 'Lista de Features')
 try:
     df = pd.read_csv('Obesity.csv')
 except FileNotFoundError:
-    st.error('🚫 Arquivo Obesity.csv não encontrado no repositório.')
+    st.error('🚫 Arquivo Obesity.csv não encontrado.')
     st.stop()
 
 
 # ============================
-# 🔠 Mapear Labels da Obesidade
+# 🔠 Mapeamento de Labels
 # ============================
 ordem_obesidade = [
     'Insufficient_Weight',
@@ -82,7 +81,6 @@ with aba1:
     st.title('🔍 Sistema Preditivo — Diagnóstico de Obesidade')
 
     with st.form('form_predicao'):
-
         st.subheader('⚙️ Dados Gerais')
 
         genero = st.selectbox('Gênero', ['Feminino', 'Masculino'])
@@ -109,7 +107,6 @@ with aba1:
 
 
     if submit:
-        # 🔧 Mapeamento dos dados
         mapa_binario = {'Sim': 1, 'Não': 0}
         mapa_genero = {'Masculino': 1, 'Feminino': 0}
         mapa_atividade = {'Nunca': 0, 'Pouquíssima': 1, 'Moderada': 2, 'Frequente': 3}
@@ -138,7 +135,6 @@ with aba1:
         }])
 
         dados = dados[features]
-
         pred = modelo.predict(dados)[0]
         resultado = label_encoder.inverse_transform([pred])[0]
 
@@ -150,86 +146,70 @@ with aba1:
 # 📊 Aba 2 — Painel Analítico
 # ============================
 with aba2:
-    st.title('📊 Painel Analítico — Análise da Base de Dados')
+    st.title('📊 Painel Analítico — Subabas Temáticas')
 
-    # Gráfico — Distribuição dos Níveis de Obesidade
-    st.subheader('Distribuição dos Níveis de Obesidade')
-    fig, ax = plt.subplots(figsize=(8, 5))
-
-    contagem = df['Obesity_Label'].value_counts().reindex([mapeamento_obesidade[k] for k in ordem_obesidade])
-
-    sns.barplot(
-        x=contagem.values,
-        y=contagem.index,
-        color='red',
-        ax=ax
+    subaba = st.selectbox(
+        'Selecione a Análise:',
+        ['🎯 Distribuição Geral',
+         '🔍 Perfil Demográfico',
+         '🥦 Estilo de Vida',
+         '🔧 Comportamento e Hábitos',
+         '🚬 Consumo e Transporte',
+         '🔗 Correlação']
     )
 
-    ax.set_title('Distribuição dos Níveis de Obesidade', fontsize=12, fontweight='bold')
-    ax.set_xlabel('Quantidade', fontsize=10)
-    ax.set_ylabel('Nível de Obesidade', fontsize=10)
+    if subaba == '🎯 Distribuição Geral':
+        st.subheader('Distribuição dos Níveis de Obesidade, Peso, Altura e Idade')
+        col1, col2 = st.columns(2)
 
-    for i, v in enumerate(contagem.values):
-        ax.text(v + 0.5, i, str(v), color='black', va='center', fontsize=9)
+        with col1:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            contagem = df['Obesity_Label'].value_counts().reindex([mapeamento_obesidade[k] for k in ordem_obesidade])
+            sns.barplot(x=contagem.values, y=contagem.index, color='red', ax=ax)
+            ax.set_title('Níveis de Obesidade')
+            st.pyplot(fig)
 
-    plt.tight_layout()
-    st.pyplot(fig)
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.histplot(df['Weight'], kde=True, bins=20, ax=ax, color='blue')
+            ax.set_title('Distribuição de Peso')
+            st.pyplot(fig)
 
+        with col2:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.histplot(df['Height'], kde=True, bins=20, ax=ax, color='orange')
+            ax.set_title('Distribuição de Altura')
+            st.pyplot(fig)
 
-    # Gráfico — Distribuição de Peso
-    st.subheader('Distribuição de Peso')
-    fig, ax = plt.subplots(figsize=(8, 4))
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.histplot(df['Age'], kde=True, bins=20, ax=ax, color='green')
+            ax.set_title('Distribuição de Idade')
+            st.pyplot(fig)
 
-    sns.histplot(df['Weight'], kde=True, bins=20, ax=ax, color='blue')
+    elif subaba == '🔍 Perfil Demográfico':
+        st.subheader('Distribuição por Gênero e Histórico Familiar')
+        col1, col2 = st.columns(2)
 
-    ax.set_title('Distribuição de Peso', fontsize=12, fontweight='bold')
-    ax.set_xlabel('Peso (kg)', fontsize=10)
-    ax.set_ylabel('Frequência', fontsize=10)
+        with col1:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.countplot(data=df, x='Gender', hue='Obesity_Label', palette='Reds', hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade], ax=ax)
+            ax.set_title('Obesidade por Gênero')
+            st.pyplot(fig)
 
-    plt.tight_layout()
-    st.pyplot(fig)
+        with col2:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.countplot(data=df, x='family_history_with_overweight', hue='Obesity_Label', palette='Reds', hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade], ax=ax)
+            ax.set_title('Obesidade x Histórico Familiar')
+            st.pyplot(fig)
 
+    elif subaba == '🔗 Correlação':
+        st.subheader('Mapa de Correlação')
+        variaveis_numericas = ['Age', 'Height', 'Weight']
+        matriz_correlacao = df[variaveis_numericas].corr()
 
-    # Gráfico — Distribuição de Altura
-    st.subheader('Distribuição de Altura')
-    fig, ax = plt.subplots(figsize=(8, 4))
+        fig, ax = plt.subplots(figsize=(5, 4))
+        sns.heatmap(matriz_correlacao, annot=True, cmap='Reds', fmt=".2f", ax=ax)
+        ax.set_title('Correlação entre Variáveis Numéricas')
+        st.pyplot(fig)
 
-    sns.histplot(df['Height'], kde=True, bins=20, ax=ax, color='orange')
-
-    ax.set_title('Distribuição de Altura', fontsize=12, fontweight='bold')
-    ax.set_xlabel('Altura (m)', fontsize=10)
-    ax.set_ylabel('Frequência', fontsize=10)
-
-    plt.tight_layout()
-    st.pyplot(fig)
-
-
-    # Gráfico — Obesidade por Gênero
-    st.subheader('Distribuição dos Níveis de Obesidade por Gênero')
-    fig, ax = plt.subplots(figsize=(7, 5))
-
-    sns.countplot(
-        data=df,
-        x='Gender',
-        hue='Obesity_Label',
-        hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
-        palette='Reds',
-        ax=ax
-    )
-
-    ax.set_title('Distribuição dos Níveis de Obesidade por Gênero', fontsize=12, fontweight='bold')
-    ax.set_xlabel('Gênero', fontsize=10)
-    ax.set_ylabel('Quantidade', fontsize=10)
-
-    plt.xticks(fontsize=9)
-    plt.yticks(fontsize=9)
-    plt.legend(
-        title='Nível de Obesidade',
-        fontsize=8,
-        title_fontsize=9,
-        bbox_to_anchor=(1.05, 1),
-        loc='upper left'
-    )
-
-    plt.tight_layout()
-    st.pyplot(fig)
+    else:
+        st.info('🚧 Subaba em desenvolvimento...')

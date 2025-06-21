@@ -153,7 +153,10 @@ with aba2:
     subaba = st.selectbox(
         'Selecione a Análise:',
         ['🎯 Distribuição Geral',
-         '🔍 Perfil Demográfico']
+         '🔍 Perfil Demográfico',
+         '🥦 Estilo de Vida',
+         '🔧 Comportamento e Hábitos',
+         '🚬 Consumo e Transporte']
     )
 
     # 🎯 Distribuição Geral

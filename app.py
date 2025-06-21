@@ -421,12 +421,19 @@ with aba2:
     if subaba == '🚬 Consumo e Transporte':
         st.subheader('Consumo de Cigarro, Álcool e Transporte')
 
-        col1, col2 = st.columns(2)
+        # 🔧 Correção dos rótulos
+        df_plot = df_graficos.copy()
+        df_plot['fuma'] = df_plot['fuma'].replace({'yes': 'Sim', 'no': 'Não'})
+        df_plot['freq_consumo_alcool'] = df_plot['freq_consumo_alcool'].replace({
+            'no': 'Não', 'Sometimes': 'Às vezes', 'Frequently': 'Frequente', 'Always': 'Sempre'
+        })
+
+        col1, col2, col3 = st.columns(3)
 
         with col1:
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(4, 3))
             sns.countplot(
-                data=df_graficos,
+                data=df_plot,
                 x='fuma',
                 hue='Obesity_Label',
                 palette='Reds',
@@ -434,7 +441,7 @@ with aba2:
                 ax=ax
             )
             ax.set_title('Consumo de Cigarro', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Fuma?', fontsize=9)
+            ax.set_xlabel('')  # 🔥 Oculta o nome do eixo X
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
             plt.xticks(rotation=45)
@@ -442,9 +449,9 @@ with aba2:
             st.pyplot(fig)
 
         with col2:
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(4, 3))
             sns.countplot(
-                data=df_graficos,
+                data=df_plot,
                 x='freq_consumo_alcool',
                 hue='Obesity_Label',
                 palette='Reds',
@@ -452,31 +459,30 @@ with aba2:
                 ax=ax
             )
             ax.set_title('Consumo de Álcool', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Frequência de Consumo', fontsize=9)
+            ax.set_xlabel('')  # 🔥 Oculta o nome do eixo X
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
             plt.xticks(rotation=45)
             ax.get_legend().remove()
             st.pyplot(fig)
 
-        st.subheader('Distribuição por Meio de Transporte')
-
-        fig, ax = plt.subplots(figsize=(6, 4))
-        sns.countplot(
-            data=df_graficos,
-            x='meio_transporte_contumaz',
-            hue='Obesity_Label',
-            palette='Reds',
-            hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
-            ax=ax
-        )
-        ax.set_title('Meio de Transporte Utilizado', fontsize=12, fontweight='bold')
-        ax.set_xlabel('Transporte', fontsize=9)
-        ax.set_ylabel('Quantidade', fontsize=9)
-        ax.tick_params(axis='both', labelsize=8)
-        plt.xticks(rotation=45)
-        ax.get_legend().remove()
-        st.pyplot(fig)
+        with col3:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.countplot(
+                data=df_plot,
+                x='meio_transporte_contumaz',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Meio de Transporte', fontsize=12, fontweight='bold')
+            ax.set_xlabel('')  # 🔥 Oculta o nome do eixo X
+            ax.set_ylabel('Quantidade', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            ax.get_legend().remove()
+            st.pyplot(fig)
 
         # 🔸 Legenda única
         cores = sns.color_palette("Reds", n_colors=7)
@@ -497,8 +503,6 @@ with aba2:
             frameon=False
         )
         st.pyplot(fig)
-
-
 
 
 

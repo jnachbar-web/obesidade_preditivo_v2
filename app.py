@@ -1,5 +1,3 @@
-st.info('🛠️ Código atualizado em: 21/06/2025 às 15h')
-
 # ============================
 # 🚀 Sistema Preditivo de Obesidade com Painel Analítico
 # ============================

@@ -264,3 +264,227 @@ with aba2:
             frameon=False
         )
         st.pyplot(fig)
+    
+    # 🥦 Estilo de Vida
+    if subaba == '🥦 Estilo de Vida':
+        st.subheader('Análise de Estilo de Vida')
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.boxplot(
+                data=df_graficos,
+                x='Obesity_Label',
+                y='consumo_vegetais',
+                palette='Reds',
+                order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Consumo de Vegetais', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Nível de Obesidade', fontsize=9)
+            ax.set_ylabel('Frequência', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            st.pyplot(fig)
+
+        with col2:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.boxplot(
+                data=df_graficos,
+                x='Obesity_Label',
+                y='freq_atividade_fisica',
+                palette='Reds',
+                order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Frequência de Atividade Física', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Nível de Obesidade', fontsize=9)
+            ax.set_ylabel('Frequência', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            st.pyplot(fig)
+
+        with col3:
+            fig, ax = plt.subplots(figsize=(4, 3))
+            sns.boxplot(
+                data=df_graficos,
+                x='Obesity_Label',
+                y='qtde_agua_diaria',
+                palette='Reds',
+                order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Consumo de Água (Litros)', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Nível de Obesidade', fontsize=9)
+            ax.set_ylabel('Litros', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            st.pyplot(fig)
+    
+    # 🔧 Comportamento e Hábitos
+    if subaba == '🔧 Comportamento e Hábitos':
+        st.subheader('Comportamento e Hábitos Alimentares')
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.countplot(
+                data=df_graficos,
+                x='alimentacao_entre_refeicoes',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Consumo Entre Refeições', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Frequência', fontsize=9)
+            ax.set_ylabel('Quantidade', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            ax.get_legend().remove()
+            st.pyplot(fig)
+
+        with col2:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.countplot(
+                data=df_graficos,
+                x='monitora_calorias',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Monitoramento de Calorias', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Monitora?', fontsize=9)
+            ax.set_ylabel('Quantidade', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            ax.get_legend().remove()
+            st.pyplot(fig)
+
+        st.subheader('Consumo de Alimentos Altamente Calóricos')
+
+        fig, ax = plt.subplots(figsize=(6, 4))
+        sns.countplot(
+            data=df_graficos,
+            x='consome_alta_calorias_frequente',
+            hue='Obesity_Label',
+            palette='Reds',
+            hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+            ax=ax
+        )
+        ax.set_title('Consome Alimentos Altamente Calóricos?', fontsize=12, fontweight='bold')
+        ax.set_xlabel('Consome?', fontsize=9)
+        ax.set_ylabel('Quantidade', fontsize=9)
+        ax.tick_params(axis='both', labelsize=8)
+        plt.xticks(rotation=45)
+        ax.get_legend().remove()
+        st.pyplot(fig)
+
+        # 🔸 Legenda única
+        cores = sns.color_palette("Reds", n_colors=7)
+        legenda_patches = [
+            Patch(color=cores[i], label=mapeamento_obesidade[k])
+            for i, k in enumerate(ordem_obesidade)
+        ]
+
+        fig, ax = plt.subplots(figsize=(6, 1))
+        ax.axis('off')
+        ax.legend(
+            handles=legenda_patches,
+            title='Nível de Obesidade',
+            loc='center',
+            ncol=4,
+            fontsize=8,
+            title_fontsize=9,
+            frameon=False
+        )
+        st.pyplot(fig)
+
+        # 🚬 Consumo e Transporte
+    if subaba == '🚬 Consumo e Transporte':
+        st.subheader('Consumo de Cigarro, Álcool e Transporte')
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.countplot(
+                data=df_graficos,
+                x='fuma',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Consumo de Cigarro', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Fuma?', fontsize=9)
+            ax.set_ylabel('Quantidade', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            ax.get_legend().remove()
+            st.pyplot(fig)
+
+        with col2:
+            fig, ax = plt.subplots(figsize=(5, 3))
+            sns.countplot(
+                data=df_graficos,
+                x='freq_consumo_alcool',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
+            )
+            ax.set_title('Consumo de Álcool', fontsize=12, fontweight='bold')
+            ax.set_xlabel('Frequência de Consumo', fontsize=9)
+            ax.set_ylabel('Quantidade', fontsize=9)
+            ax.tick_params(axis='both', labelsize=8)
+            plt.xticks(rotation=45)
+            ax.get_legend().remove()
+            st.pyplot(fig)
+
+        st.subheader('Distribuição por Meio de Transporte')
+
+        fig, ax = plt.subplots(figsize=(6, 4))
+        sns.countplot(
+            data=df_graficos,
+            x='meio_transporte_contumaz',
+            hue='Obesity_Label',
+            palette='Reds',
+            hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+            ax=ax
+        )
+        ax.set_title('Meio de Transporte Utilizado', fontsize=12, fontweight='bold')
+        ax.set_xlabel('Transporte', fontsize=9)
+        ax.set_ylabel('Quantidade', fontsize=9)
+        ax.tick_params(axis='both', labelsize=8)
+        plt.xticks(rotation=45)
+        ax.get_legend().remove()
+        st.pyplot(fig)
+
+        # 🔸 Legenda única
+        cores = sns.color_palette("Reds", n_colors=7)
+        legenda_patches = [
+            Patch(color=cores[i], label=mapeamento_obesidade[k])
+            for i, k in enumerate(ordem_obesidade)
+        ]
+
+        fig, ax = plt.subplots(figsize=(6, 1))
+        ax.axis('off')
+        ax.legend(
+            handles=legenda_patches,
+            title='Nível de Obesidade',
+            loc='center',
+            ncol=4,
+            fontsize=8,
+            title_fontsize=9,
+            frameon=False
+        )
+        st.pyplot(fig)
+
+
+
+
+

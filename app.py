@@ -160,10 +160,6 @@ with aba1:
         # ✔️ Garantir a ordem das features
         dados = dados[features]
 
-        # ✔️ Visualizar os dados preparados
-        st.subheader('🔎 Dados preparados para o modelo:')
-        st.dataframe(dados.style.format(precision=2))
-
         # 🚀 Predição
         pred = modelo.predict(dados)[0]
         resultado = label_encoder_target.inverse_transform([pred])[0]

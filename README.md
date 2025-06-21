@@ -1,20 +1,25 @@
-# 🩺 Preditor de Obesidade
+# 🔍 Preditor de Obesidade
 
-Este projeto foi desenvolvido para prever o nível de obesidade com base em dados pessoais, hábitos alimentares e comportamentais.
+Este projeto tem como objetivo desenvolver um modelo preditivo para auxiliar na classificação do nível de obesidade de indivíduos, considerando fatores demográficos, comportamentais e hábitos alimentares.
 
-## 🚀 Como acessar o app
-O app está hospedado no Streamlit Cloud: [🔗 Acesse aqui](https://<seu-usuario>-obesidade-preditivo.streamlit.app)
+## 🚀 Tecnologias Utilizadas
+- Python
+- Scikit-Learn
+- Pandas
+- Streamlit
+- Seaborn / Matplotlib
+- Joblib
 
-## 📁 Arquivos
-- `app.py` → Código do app no Streamlit
-- `modelo_obesidade.joblib` → Modelo treinado
-- `labelencoder_obesidade.joblib` → Label Encoder para decodificar a saída do modelo
-- `requirements.txt` → Dependências do projeto
+## 📦 Estrutura do Projeto
+- `app.py` — Sistema preditivo e painel analítico desenvolvido em Streamlit.
+- `modelo/` — Artefatos do modelo (modelo treinado, scaler, label encoders, lista de features).
+- `dados/` — Base de dados utilizada para análise e treinamento.
 
-## 🧠 Modelagem
-O modelo final foi treinado utilizando **Gradient Boosting**, com uma acurácia de aproximadamente **95.9%**.
+## 🎯 Funcionalidades
+- Predição do nível de obesidade com base nas informações inseridas.
+- Painel analítico com análise exploratória dos dados.
+- Deploy online via Streamlit Cloud.
 
-## ✨ Funcionalidades
-- Sistema preditivo para diagnóstico de obesidade
-- Inputs de variáveis clínicas, alimentares e comportamentais
-- Resultado interpretável para o usuário
+## 🔗 Acesso
+- Aplicação Online: [👉 Acesse aqui](https://obesidadepreditivov2-vqwcgdy7j7zeklnya4yoht.streamlit.app/)
+- Repositório no GitHub: [👉 GitHub](https://github.com/jnachbar-web/obesidade_preditivo_v2)

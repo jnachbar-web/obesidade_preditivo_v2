@@ -39,7 +39,7 @@ df_graficos.rename(columns={
     'Age':'idade',
     'Height':'altura',
     'Weight':'peso',
-    'family_history_with_overweight':'historico_familiar',
+    'family_history':'historico_familiar',
     'FAVC':'consome_alta_calorias_frequente',
     'FCVC':'consumo_vegetais',
     'NCP':'qtde_refeicoes_principais',

@@ -152,11 +152,7 @@ with aba2:
     subaba = st.selectbox(
         'Selecione a Análise:',
         ['🎯 Distribuição Geral',
-         '🔍 Perfil Demográfico',
-         '🥦 Estilo de Vida',
-         '🔧 Comportamento e Hábitos',
-         '🚬 Consumo e Transporte',
-         '🔗 Correlação']
+         '🔍 Perfil Demográfico']
     )
 
     # 🎯 Distribuição Geral
@@ -210,81 +206,54 @@ with aba2:
 
         col1, col2 = st.columns(2)
 
+        df_plot = df_graficos.copy()
+        df_plot['genero'] = df_plot['genero'].map({'Male': 'Masculino', 'Female': 'Feminino'})
+        df_plot['historico_familiar'] = df_plot['historico_familiar'].map({'yes': 'Sim', 'no': 'Não'})
+
         with col1:
             fig, ax = plt.subplots(figsize=(5, 3))
             sns.countplot(
-                data=df_graficos, x='genero', hue='Obesity_Label',
-                palette='Reds', hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade], ax=ax
+                data=df_plot,
+                x='genero',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
             )
             ax.set_title('Obesidade por Gênero', fontsize=12, fontweight='bold')
             ax.set_xlabel('Gênero', fontsize=9)
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
+            ax.get_legend().remove()
             st.pyplot(fig)
 
         with col2:
             fig, ax = plt.subplots(figsize=(5, 3))
             sns.countplot(
-                data=df_graficos, x='historico_familiar', hue='Obesity_Label',
-                palette='Reds', hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade], ax=ax
+                data=df_plot,
+                x='historico_familiar',
+                hue='Obesity_Label',
+                palette='Reds',
+                hue_order=[mapeamento_obesidade[k] for k in ordem_obesidade],
+                ax=ax
             )
             ax.set_title('Obesidade x Histórico Familiar', fontsize=12, fontweight='bold')
             ax.set_xlabel('Histórico Familiar', fontsize=9)
             ax.set_ylabel('Quantidade', fontsize=9)
             ax.tick_params(axis='both', labelsize=8)
+            ax.get_legend().remove()
             st.pyplot(fig)
 
-    # 🥦 Estilo de Vida
-    elif subaba == '🥦 Estilo de Vida':
-        st.subheader('Consumo de Vegetais, Atividade Física e Água')
-
-        col1, col2, col3 = st.columns(3)
-
-        with col1:
-            fig, ax = plt.subplots(figsize=(4, 3))
-            sns.boxplot(x='Obesity_Label', y='consumo_vegetais', data=df_graficos,
-                        order=[mapeamento_obesidade[k] for k in ordem_obesidade], palette='Reds', ax=ax)
-            ax.set_title('Consumo de Vegetais', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Nível de Obesidade', fontsize=9)
-            ax.set_ylabel('Frequência', fontsize=9)
-            ax.tick_params(axis='both', labelsize=8)
-            plt.xticks(rotation=45)
-            st.pyplot(fig)
-
-        with col2:
-            fig, ax = plt.subplots(figsize=(4, 3))
-            sns.boxplot(x='Obesity_Label', y='freq_atividade_fisica', data=df_graficos,
-                        order=[mapeamento_obesidade[k] for k in ordem_obesidade], palette='Reds', ax=ax)
-            ax.set_title('Frequência de Atividade Física', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Nível de Obesidade', fontsize=9)
-            ax.set_ylabel('Frequência', fontsize=9)
-            ax.tick_params(axis='both', labelsize=8)
-            plt.xticks(rotation=45)
-            st.pyplot(fig)
-
-        with col3:
-            fig, ax = plt.subplots(figsize=(4, 3))
-            sns.boxplot(x='Obesity_Label', y='qtde_agua_diaria', data=df_graficos,
-                        order=[mapeamento_obesidade[k] for k in ordem_obesidade], palette='Reds', ax=ax)
-            ax.set_title('Consumo de Água (L)', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Nível de Obesidade', fontsize=9)
-            ax.set_ylabel('Litros', fontsize=9)
-            ax.tick_params(axis='both', labelsize=8)
-            plt.xticks(rotation=45)
-            st.pyplot(fig)
-
-    # 🔗 Correlação
-    elif subaba == '🔗 Correlação':
-        st.subheader('Mapa de Correlação')
-
-        variaveis_numericas = ['idade', 'altura', 'peso', 'qtde_refeicoes_principais', 'qtde_agua_diaria', 'tempo_uso_dispositivos']
-        matriz_correlacao = df_graficos[variaveis_numericas].corr()
-
-        fig, ax = plt.subplots(figsize=(5, 4))
-        sns.heatmap(matriz_correlacao, annot=True, cmap='Reds', fmt=".2f", ax=ax)
-        ax.set_title('Correlação entre Variáveis Numéricas', fontsize=12, fontweight='bold')
-        ax.tick_params(axis='both', labelsize=8)
-        st.pyplot(fig)
-
-    else:
-        st.info('🚧 Esta subaba será construída na próxima etapa...')
+        # 🔸 Legenda única
+        legenda = plt.figure(figsize=(6, 1))
+        plt.legend(
+            labels=[mapeamento_obesidade[k] for k in ordem_obesidade],
+            title='Nível de Obesidade',
+            fontsize=8,
+            title_fontsize=9,
+            loc='center',
+            ncol=4,
+            frameon=False
+        )
+        plt.axis('off')
+        st.pyplot(legenda)

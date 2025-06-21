@@ -66,6 +66,74 @@ aba1, aba2 = st.tabs(['🔍 Sistema Preditivo', '📊 Painel Analítico'])
 # ============================
 # 🔍 Aba 1 — Sistema Preditivo
 # ============================
+import streamlit as st
+import pandas as pd
+import joblib
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.patches import Patch
+
+# ============================
+# 🎨 Configuração da Página
+# ============================
+st.set_page_config(page_title='Preditor de Obesidade', layout='wide')
+
+# ============================
+# 📂 Carregar Artefatos
+# ============================
+modelo = joblib.load('modelo_obesidade.joblib')
+scaler = joblib.load('scaler.joblib')
+label_encoders = joblib.load('labelencoders.joblib')
+label_encoder_target = joblib.load('labelencoder_target.joblib')
+features = joblib.load('features.joblib')
+
+# ============================
+# 📊 Carregar Dados para o Painel Analítico
+# ============================
+df_graficos = pd.read_csv('Obesity.csv')
+
+# Renomear colunas
+df_graficos.rename(columns={
+    'Gender':'genero',
+    'Age':'idade',
+    'Height':'altura',
+    'Weight':'peso',
+    'family_history':'historico_familiar',
+    'FAVC':'consome_alta_calorias_frequente',
+    'FCVC':'consumo_vegetais',
+    'NCP':'qtde_refeicoes_principais',
+    'CAEC':'alimentacao_entre_refeicoes',
+    'SMOKE':'fuma',
+    'CH2O':'qtde_agua_diaria',
+    'SCC':'monitora_calorias',
+    'FAF':'freq_atividade_fisica',
+    'TUE':'tempo_uso_dispositivos',
+    'CALC':'freq_consumo_alcool',
+    'MTRANS':'meio_transporte_contumaz',
+    'Obesity':'nivel_obesidade'
+}, inplace=True)
+
+# Mapeamento de labels para o painel
+mapeamento_obesidade = {
+    'Insufficient_Weight': 'Abaixo do Peso',
+    'Normal_Weight': 'Peso Normal',
+    'Overweight_Level_I': 'Sobrepeso I',
+    'Overweight_Level_II': 'Sobrepeso II',
+    'Obesity_Type_I': 'Obesidade I',
+    'Obesity_Type_II': 'Obesidade II',
+    'Obesity_Type_III': 'Obesidade III'
+}
+
+df_graficos['Obesity_Label'] = df_graficos['nivel_obesidade'].map(mapeamento_obesidade)
+
+# ============================
+# 🔀 Abas do App
+# ============================
+aba1, aba2 = st.tabs(['🔍 Sistema Preditivo', '📊 Painel Analítico'])
+
+# ============================
+# 🔍 Aba 1 — Sistema Preditivo
+# ============================
 with aba1:
     st.title('🔍 Sistema Preditivo — Diagnóstico de Obesidade')
 

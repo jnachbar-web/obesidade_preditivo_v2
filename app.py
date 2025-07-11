@@ -238,7 +238,9 @@ with aba2:
 
             st.markdown(
                 """ As distribuições revelam que a **altura** apresenta variação moderada, com maior concentração entre **1,65 m e 1,80 m**.
+
                 O **peso** demonstra ampla dispersão, com picos na faixa de **80 a 90 kg**, refletindo possíveis padrões de sobrepeso. 
+                
                 Já a **idade** está fortemente concentrada em **jovens adultos**, especialmente entre **18 e 25 anos**, indicando que o público analisado é majoritariamente jovem. Essa composição influencia diretamente na análise preditiva de obesidade, destacando a importância de políticas de prevenção voltadas a esse perfil.
                 """)
 

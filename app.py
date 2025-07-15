@@ -203,9 +203,11 @@ with aba2:
             st.markdown(
                 """
                 <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
-                A maior concentração de indivíduos está nos níveis **Obesidade I**, **Obesidade III** e **Obesidade II**, respectivamente, o que revela cenário preocupante de **predominância de obesidade severa** na amostra analisada.  
-                As categorias intermediárias — como *Sobrepeso* e *Peso Normal* — aparecem em proporções similares, enquanto o grupo *Abaixo do Peso* é o menos frequente.  
-                Essa distribuição evidencia a **necessidade urgente de intervenções em saúde pública**, voltadas à **prevenção e tratamento da obesidade em níveis mais avançados**, antes que evoluam para comorbidades associadas.
+                A maior concentração de indivíduos está nos níveis <strong>Obesidade I</strong>, <strong>Obesidade III</strong> e <strong>Obesidade II</strong>, respectivamente, o que revela cenário preocupante de <strong>predominância de obesidade severa</strong> na amostra analisada.
+                <br><br>
+                As categorias intermediárias — como <em>Sobrepeso</em> e <em>Peso Normal</em> — aparecem em proporções similares, enquanto o grupo <em>Abaixo do Peso</em> é o menos frequente.
+                <br><br>
+                Essa distribuição evidencia a <strong>necessidade urgente de intervenções em saúde pública</strong>, voltadas à <strong>prevenção e tratamento da obesidade em níveis mais avançados</strong>, antes que evoluam para comorbidades associadas.
                 </div>
                 """,
                 unsafe_allow_html=True
@@ -315,13 +317,18 @@ with aba2:
         )
         st.pyplot(fig)
 
-        st.markdown(''' 
-            > O Gráfico I evidencia que a **obesidade é mais prevalente no sexo masculino**, especialmente nos níveis mais severos (Obesidade II e III), enquanto as mulheres apresentam maior concentração nos níveis leves e em estado de peso normal.  
-            >
-            > Já no Gráfico II, observa-se que indivíduos com **histórico familiar de obesidade** concentram a maioria dos casos em todos os níveis da condição, reforçando a **influência genética e comportamental** no desenvolvimento da obesidade.  
-            >
-            > Esses achados apontam para a necessidade de abordagens personalizadas na prevenção e tratamento, considerando tanto o gênero quanto os antecedentes familiares.
-            ''')
+        st.markdown(
+            """
+            <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+            O <strong>Gráfico I</strong> evidencia que a <strong>obesidade é mais prevalente no sexo masculino</strong>, especialmente nos níveis mais severos (Obesidade II e III), enquanto as mulheres apresentam maior concentração nos níveis leves e em estado de peso normal.
+            <br><br>
+            Já no <strong>Gráfico II</strong>, observa-se que indivíduos com <strong>histórico familiar de obesidade</strong> concentram a maioria dos casos em todos os níveis da condição, reforçando a <strong>influência genética e comportamental</strong> no desenvolvimento da obesidade.
+            <br><br>
+            Esses achados apontam para a necessidade de <strong>abordagens personalizadas</strong> na prevenção e tratamento, considerando tanto o gênero quanto os antecedentes familiares.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
     # 🥦 Estilo de Vida
@@ -380,14 +387,19 @@ with aba2:
             ax.tick_params(axis='both', labelsize=8)
             plt.xticks(rotation=45)
             st.pyplot(fig)
-            
-            st.markdown(''' 
-                > A distribuição do **consumo de vegetais** é relativamente estável entre os diferentes níveis de obesidade, o que sugere que apenas esse fator isolado pode não ser determinante para a condição.  
-                >
-                > Em contrapartida, a **frequência de atividade física** apresenta uma clara tendência de queda conforme aumenta o nível de obesidade, indicando forte associação entre sedentarismo e obesidade severa.  
-                >
-                > Já o **consumo de água** não mostra padrão linear, mas níveis mais altos de obesidade mantêm uma mediana próxima a 2,5 litros, o que pode refletir tentativas de controle ou compensação no estilo de vida.
-                ''')
+
+            st.markdown(
+                """
+                <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+                A distribuição do <strong>consumo de vegetais</strong> é relativamente estável entre os diferentes níveis de obesidade, o que sugere que apenas esse fator isolado pode não ser determinante para a condição.
+                <br><br>
+                Em contrapartida, a <strong>frequência de atividade física</strong> apresenta uma clara tendência de queda conforme aumenta o nível de obesidade, indicando forte associação entre sedentarismo e obesidade severa.
+                <br><br>
+                Já o <strong>consumo de água</strong> não mostra padrão linear, mas níveis mais altos de obesidade mantêm uma mediana próxima a 2,5 litros, o que pode refletir tentativas de controle ou compensação no estilo de vida.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
     
     # 🔧 Comportamento e Hábitos
     if subaba == '🔧 Comportamento e Hábitos':
@@ -481,13 +493,18 @@ with aba2:
         )
         st.pyplot(fig)
 
-        st.markdown(''' 
-            > A maioria dos indivíduos com obesidade relatam consumir alimentos entre as refeições com alguma frequência, sendo rara a ausência desse hábito em níveis mais altos de obesidade.  
-            >
-            > O **monitoramento de calorias** é bastante negligenciado em todos os níveis, mas sua prática é quase inexistente entre os obesos, o que sugere falta de controle alimentar intencional nesse grupo.  
-            >
-            > Já o **consumo de alimentos calóricos** mostra uma forte associação com níveis mais altos de obesidade, sendo mais prevalente justamente entre os indivíduos com obesidade moderada a grave, evidenciando um comportamento alimentar de alto risco.
-            ''')
+        st.markdown(
+            """
+            <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+            A maioria dos indivíduos com obesidade relatam consumir alimentos entre as refeições com alguma frequência, sendo rara a ausência desse hábito em níveis mais altos de obesidade.
+            <br><br>
+            O <strong>monitoramento de calorias</strong> é bastante negligenciado em todos os níveis, mas sua prática é quase inexistente entre os obesos, o que sugere falta de controle alimentar intencional nesse grupo.
+            <br><br>
+            Já o <strong>consumo de alimentos calóricos</strong> mostra uma forte associação com níveis mais altos de obesidade, sendo mais prevalente justamente entre os indivíduos com obesidade moderada a grave, evidenciando um comportamento alimentar de alto risco.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
         # 🚬 Consumo e Transporte
     if subaba == '🚬 Consumo e Transporte':
@@ -583,10 +600,15 @@ with aba2:
         )
         st.pyplot(fig)
 
-        st.markdown(''' 
-            > O tabagismo é pouco prevalente na amostra analisada, mas entre os que fumam observa-se leve aumento nos níveis de obesidade.  
-            >
-            > O **consumo de álcool** esporádico (“às vezes”) é comum em todos os grupos, mas há destaque para níveis mais elevados de obesidade nesse padrão, sugerindo possível relação com consumo calórico extra.  
-            >
-            > Por fim, observa-se que indivíduos com **obesidade grave** utilizam predominantemente **transporte público** e **automóvel**, enquanto a prática de deslocamento a pé ou de bicicleta praticamente desaparece entre esses grupos — evidenciando baixo nível de atividade física no cotidiano.
-            ''')
+        st.markdown(
+            """
+            <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+            O tabagismo é pouco prevalente na amostra analisada, mas entre os que fumam observa-se leve aumento nos níveis de obesidade.
+            <br><br>
+            O <strong>consumo de álcool</strong> esporádico (“às vezes”) é comum em todos os grupos, mas há destaque para níveis mais elevados de obesidade nesse padrão, sugerindo possível relação com consumo calórico extra.
+            <br><br>
+            Por fim, observa-se que indivíduos com <strong>obesidade grave</strong> utilizam predominantemente <strong>transporte público</strong> e <strong>automóvel</strong>, enquanto a prática de deslocamento a pé ou de bicicleta praticamente desaparece entre esses grupos — evidenciando baixo nível de atividade física no cotidiano.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )

@@ -200,13 +200,16 @@ with aba2:
             ax.tick_params(axis='both', labelsize=8)
             st.pyplot(fig)
 
-            st.markdown('''
-            > A maior concentração de indivíduos está nos níveis **Obesidade I**, **Obesidade III** e **Obesidade II**, respectivamente, o que revela cenário preocupante de **predominância de obesidade severa** na amostra analisada.  
-            >  
-            > As categorias intermediárias — como *Sobrepeso* e *Peso Normal* — aparecem em proporções similares, enquanto o grupo *Abaixo do Peso* é o menos frequente.  
-            >  
-            > Essa distribuição evidencia a **necessidade urgente de intervenções em saúde pública**, voltadas à **prevenção e tratamento da obesidade em níveis mais avançados**, antes que evoluam para comorbidades associadas.
-            ''')
+            st.markdown(
+                """
+                <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+                A maior concentração de indivíduos está nos níveis **Obesidade I**, **Obesidade III** e **Obesidade II**, respectivamente, o que revela cenário preocupante de **predominância de obesidade severa** na amostra analisada.  
+                As categorias intermediárias — como *Sobrepeso* e *Peso Normal* — aparecem em proporções similares, enquanto o grupo *Abaixo do Peso* é o menos frequente.  
+                Essa distribuição evidencia a **necessidade urgente de intervenções em saúde pública**, voltadas à **prevenção e tratamento da obesidade em níveis mais avançados**, antes que evoluam para comorbidades associadas.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
         col1, col2, col3 = st.columns(3)
         with col1:

@@ -391,18 +391,18 @@ with aba2:
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
-            st.markdown(
-                """
-                <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
-                A distribuição do <strong>consumo de vegetais</strong> é relativamente estável entre os diferentes níveis de obesidade, o que sugere que apenas esse fator isolado pode não ser determinante para a condição.
-                <br><br>
-                Em contrapartida, a <strong>frequência de atividade física</strong> apresenta uma clara tendência de queda conforme aumenta o nível de obesidade, indicando forte associação entre sedentarismo e obesidade severa.
-                <br><br>
-                Já o <strong>consumo de água</strong> não mostra padrão linear, mas níveis mais altos de obesidade mantêm uma mediana próxima a 2,5 litros, o que pode refletir tentativas de controle ou compensação no estilo de vida.
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+        st.markdown(
+            """
+            <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+            A distribuição do <strong>consumo de vegetais</strong> é relativamente estável entre os diferentes níveis de obesidade, o que sugere que apenas esse fator isolado pode não ser determinante para a condição.
+            <br><br>
+            Em contrapartida, a <strong>frequência de atividade física</strong> apresenta uma clara tendência de queda conforme aumenta o nível de obesidade, indicando forte associação entre sedentarismo e obesidade severa.
+            <br><br>
+            Já o <strong>consumo de água</strong> não mostra padrão linear, mas níveis mais altos de obesidade mantêm uma mediana próxima a 2,5 litros, o que pode refletir tentativas de controle ou compensação no estilo de vida.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     
     # 🔧 Comportamento e Hábitos
     if subaba == '🔧 Comportamento e Hábitos':

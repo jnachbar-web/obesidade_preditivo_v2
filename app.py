@@ -309,9 +309,9 @@ with aba2:
         st.pyplot(fig)
 
         st.markdown(''' 
-            > O gráfico à esquerda evidencia que a **obesidade é mais prevalente no sexo masculino**, especialmente nos níveis mais severos (Obesidade II e III), enquanto as mulheres apresentam maior concentração nos níveis leves e em estado de peso normal.  
+            > O Gráfico I evidencia que a **obesidade é mais prevalente no sexo masculino**, especialmente nos níveis mais severos (Obesidade II e III), enquanto as mulheres apresentam maior concentração nos níveis leves e em estado de peso normal.  
             >
-            > Já no gráfico à direita, observa-se que indivíduos com **histórico familiar de obesidade** concentram a maioria dos casos em todos os níveis da condição, reforçando a **influência genética e comportamental** no desenvolvimento da obesidade.  
+            > Já no Gráfico II, observa-se que indivíduos com **histórico familiar de obesidade** concentram a maioria dos casos em todos os níveis da condição, reforçando a **influência genética e comportamental** no desenvolvimento da obesidade.  
             >
             > Esses achados apontam para a necessidade de abordagens personalizadas na prevenção e tratamento, considerando tanto o gênero quanto os antecedentes familiares.
             ''')

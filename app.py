@@ -243,14 +243,16 @@ with aba2:
 
             st.markdown(
                 """
-                <div style='max-width:900px; margin:20px auto 40px auto; text-align:justify; font-size:16px;'>
-                    As distribuições revelam que a <strong>altura</strong> apresenta variação moderada, com maior concentração entre <strong>1,65 m e 1,80 m</strong>.
-                    <br><br>
-                    O <strong>peso</strong> demonstra ampla dispersão, com picos na faixa de <strong>80 a 90 kg</strong>, refletindo possíveis padrões de sobrepeso.
-                    <br><br>
-                    Já a <strong>idade</strong> está fortemente concentrada em <strong>jovens adultos</strong>, especialmente entre <strong>18 e 25 anos</strong>, indicando que o público analisado é majoritariamente jovem.
-                    <br><br>
-                    Essa composição influencia diretamente na análise preditiva de obesidade, destacando a importância de políticas de prevenção voltadas a esse perfil.
+                <div style="display: flex; justify-content: center; margin-top: 30px;">
+                    <div style="max-width: 1000px; text-align: justify; font-size: 16px;">
+                        As distribuições revelam que a <strong>altura</strong> apresenta variação moderada, com maior concentração entre <strong>1,65 m e 1,80 m</strong>.
+                        <br><br>
+                        O <strong>peso</strong> demonstra ampla dispersão, com picos na faixa de <strong>80 a 90 kg</strong>, refletindo possíveis padrões de sobrepeso.
+                        <br><br>
+                        Já a <strong>idade</strong> está fortemente concentrada em <strong>jovens adultos</strong>, especialmente entre <strong>18 e 25 anos</strong>, indicando que o público analisado é majoritariamente jovem.
+                        <br><br>
+                        Essa composição influencia diretamente na análise preditiva de obesidade, destacando a importância de políticas de prevenção voltadas a esse perfil.
+                    </div>
                 </div>
                 """,
                 unsafe_allow_html=True

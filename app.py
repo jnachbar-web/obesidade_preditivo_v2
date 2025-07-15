@@ -239,13 +239,16 @@ with aba2:
             ax.tick_params(axis='both', labelsize=8)
             st.pyplot(fig)
 
-            st.markdown(''' 
-                > As distribuições revelam que a **altura** apresenta variação moderada, com maior concentração entre **1,65 m e 1,80 m**.
-                >
-                > O **peso** demonstra ampla dispersão, com picos na faixa de **80 a 90 kg**, refletindo possíveis padrões de sobrepeso. 
-                >
-                > Já a **idade** está fortemente concentrada em **jovens adultos**, especialmente entre **18 e 25 anos**, indicando que o público analisado é majoritariamente jovem. Essa composição influencia diretamente na análise preditiva de obesidade, destacando a importância de políticas de prevenção voltadas a esse perfil.
-                ''')
+            st.markdown(
+                """
+                <div style='max-width:800px; margin:auto; text-align:justify; font-size:16px;'>
+                As distribuições revelam que a **altura** apresenta variação moderada, com maior concentração entre **1,65 m e 1,80 m**.  
+                O **peso** demonstra ampla dispersão, com picos na faixa de **80 a 90 kg**, refletindo possíveis padrões de sobrepeso.
+                Já a **idade** está fortemente concentrada em **jovens adultos**, especialmente entre **18 e 25 anos**, indicando que o público analisado é majoritariamente jovem. Essa composição influencia diretamente na análise preditiva de obesidade, destacando a importância de políticas de prevenção voltadas a esse perfil.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
     # 🔍 Perfil Demográfico
     elif subaba == '🔍 Perfil Demográfico':
@@ -318,7 +321,8 @@ with aba2:
             >
             > Esses achados apontam para a necessidade de abordagens personalizadas na prevenção e tratamento, considerando tanto o gênero quanto os antecedentes familiares.
             ''')
-    
+
+
     # 🥦 Estilo de Vida
     if subaba == '🥦 Estilo de Vida':
         st.subheader('Análise de Estilo de Vida')
